@@ -2014,7 +2014,7 @@ const osdElementDrawFn osdElementDrawFunction[OSD_ITEM_COUNT] = {
     [OSD_GPS_LAP_TIME_BEST3]      = osdElementGpsLapTimeBest3,
 #endif // GPS_LAP_TIMER
 #ifdef USE_RACE_GATE_TIMER
-    [OSD_RACE_GATE_TIME_CURRENT]    = osdElementRaceGateTimeCurrent,
+    [OSD_RACE_GATE_TIME_CURRENT] = osdElementRaceGateTimeCurrent,
     [OSD_RACE_GATE_TIME_BEST]    = osdElementRaceGateTimeBest,
     [OSD_RACE_GATE_TOTAL_LAPS]   = osdElementRaceGateTimeTotalLaps,
 #endif // GPS_LAP_TIMER
@@ -2109,7 +2109,8 @@ void osdAddActiveElements(void)
 #ifdef USE_RACE_GATE_TIMER
     // osdAddActiveElement(OSD_RACE_GATE_TIME_CURRENT);
     // osdAddActiveElement(OSD_RACE_GATE_TIME_BEST);
-    osdAddActiveElement(OSD_RACE_GATE_TOTAL_LAPS);
+    // osdAddActiveElement(OSD_RACE_GATE_TOTAL_LAPS);
+    activeOsdElementArray[activeOsdElementCount++] = OSD_RACE_GATE_TOTAL_LAPS;
 #endif
 
 #ifdef USE_PERSISTENT_STATS
