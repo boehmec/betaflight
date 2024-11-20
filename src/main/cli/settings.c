@@ -51,6 +51,7 @@
 #include "fc/controlrate_profile.h"
 #include "fc/core.h"
 #include "fc/gps_lap_timer.h"
+#include "fc/raceGateTimer.h"
 #include "fc/parameter_names.h"
 #include "fc/rc.h"
 #include "fc/rc_adjustments.h"
@@ -1428,6 +1429,12 @@ const clivalue_t valueTable[] = {
     { "osd_gps_lap_prev_pos",       VAR_UINT16  | MASTER_VALUE, .config.minmaxUnsigned = { 0, OSD_POSCFG_MAX }, PG_OSD_ELEMENT_CONFIG, offsetof(osdElementConfig_t, item_pos[OSD_GPS_LAP_TIME_PREVIOUS]) },
     { "osd_gps_lap_best3_pos",      VAR_UINT16  | MASTER_VALUE, .config.minmaxUnsigned = { 0, OSD_POSCFG_MAX }, PG_OSD_ELEMENT_CONFIG, offsetof(osdElementConfig_t, item_pos[OSD_GPS_LAP_TIME_BEST3]) },
 #endif // USE_GPS_LAP_TIMER
+#ifdef USE_RACE_GATE_TIMER
+    { "osd_race_gate_timer_current_pos",  VAR_UINT16  | MASTER_VALUE, .config.minmaxUnsigned = { 0, OSD_POSCFG_MAX }, PG_OSD_ELEMENT_CONFIG, offsetof(osdElementConfig_t, item_pos[OSD_RACE_GATE_TIME_CURRENT]) },
+    { "osd_race_gate_timer_laps_pos",     VAR_UINT16  | MASTER_VALUE, .config.minmaxUnsigned = { 0, OSD_POSCFG_MAX }, PG_OSD_ELEMENT_CONFIG, offsetof(osdElementConfig_t, item_pos[OSD_RACE_GATE_TOTAL_LAPS]) },
+    { "osd_race_gate_timer_best_pos",     VAR_UINT16  | MASTER_VALUE, .config.minmaxUnsigned = { 0, OSD_POSCFG_MAX }, PG_OSD_ELEMENT_CONFIG, offsetof(osdElementConfig_t, item_pos[OSD_RACE_GATE_TIME_BEST]) },
+    { "osd_race_gate_timer_last_pos",     VAR_UINT16  | MASTER_VALUE, .config.minmaxUnsigned = { 0, OSD_POSCFG_MAX }, PG_OSD_ELEMENT_CONFIG, offsetof(osdElementConfig_t, item_pos[OSD_RACE_GATE_TIME_LAST]) },
+#endif // USE_RACE_GATE_TIMER
     { "osd_gps_sats_pos",           VAR_UINT16  | MASTER_VALUE, .config.minmaxUnsigned = { 0, OSD_POSCFG_MAX }, PG_OSD_ELEMENT_CONFIG, offsetof(osdElementConfig_t, item_pos[OSD_GPS_SATS]) },
     { "osd_home_dir_pos",           VAR_UINT16  | MASTER_VALUE, .config.minmaxUnsigned = { 0, OSD_POSCFG_MAX }, PG_OSD_ELEMENT_CONFIG, offsetof(osdElementConfig_t, item_pos[OSD_HOME_DIR]) },
     { "osd_home_dist_pos",          VAR_UINT16  | MASTER_VALUE, .config.minmaxUnsigned = { 0, OSD_POSCFG_MAX }, PG_OSD_ELEMENT_CONFIG, offsetof(osdElementConfig_t, item_pos[OSD_HOME_DIST]) },

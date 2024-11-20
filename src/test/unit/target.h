@@ -36,6 +36,7 @@
 #define USE_GPS_UBLOX
 #define USE_DASHBOARD
 #define USE_SERIALRX
+#define USE_RACE_GATE_TIMER
 #define USE_RX_MSP
 #define USE_SERIALRX_CRSF       // Team Black Sheep Crossfire protocol
 #define USE_SERIALRX_SPEKTRUM   // DSM2 and DSMX protocol

@@ -143,6 +143,7 @@
 #include "fc/controlrate_profile.h"
 #include "fc/core.h"
 #include "fc/gps_lap_timer.h"
+#include "fc/raceGateTimer.h"
 #include "fc/rc_adjustments.h"
 #include "fc/rc_controls.h"
 #include "fc/runtime_config.h"
@@ -937,7 +938,7 @@ static void osdElementDebug(osdElementParms_t *element)
 static void osdElementDisarmed(osdElementParms_t *element)
 {
     if (!ARMING_FLAG(ARMED)) {
-        tfp_sprintf(element->buff, "DISARMED");
+        tfp_sprintf(element->buff, "DISARMEDX");
     }
 }
 
@@ -1218,6 +1219,46 @@ static void osdElementGpsLapTimeBest3(osdElementParms_t *element)
     osdFormatLapTime(element, gpsLapTimerData.best3Consec, SYM_CHECKERED_FLAG);
 }
 #endif // GPS_LAP_TIMER
+
+#ifdef USE_RACE_GATE_TIMER
+
+static void osdFormatRaceGateTime(osdElementParms_t *element, uint32_t timeMs, uint8_t symbol)
+{
+    timeMs += 5;  // round to nearest centisecond (+/- 5ms)
+    uint32_t seconds = timeMs / 1000;
+    uint32_t decimals = (timeMs % 1000) / 10;
+    tfp_sprintf(element->buff, "T: %c%3u.%02u", symbol, seconds, decimals);
+}
+
+static void osdElementRaceGateTimeCurrent(osdElementParms_t *element)
+{
+    if (raceGateTimerData.timerRunning) {
+        uint32_t currentLapTime = millis() - raceGateTimerData.currentLapTime;
+        osdFormatRaceGateTime(element, currentLapTime, SYM_TOTAL_DISTANCE);
+    } else {
+        osdFormatRaceGateTime(element, 0, SYM_TOTAL_DISTANCE);
+    }
+}
+
+static void osdElementRaceGateTimeBest(osdElementParms_t *element)
+{
+    osdFormatRaceGateTime(element, raceGateTimerData.bestLapTime, SYM_CHECKERED_FLAG);
+}
+
+static void osdElementRaceGateTimeLast(osdElementParms_t *element)
+{
+    osdFormatRaceGateTime(element, raceGateTimerData.lastLapTime, SYM_PREV_LAP_TIME);
+}
+
+
+static void osdElementRaceGateTimeTotalLaps(osdElementParms_t *element)
+{
+    tfp_sprintf(element->buff, "LAPS: %d",  raceGateTimerData.totalLaps);
+}
+
+
+
+#endif
 
 static void osdBackgroundHorizonSidebars(osdElementParms_t *element)
 {
@@ -1986,6 +2027,12 @@ const osdElementDrawFn osdElementDrawFunction[OSD_ITEM_COUNT] = {
     [OSD_GPS_LAP_TIME_PREVIOUS]   = osdElementGpsLapTimePrevious,
     [OSD_GPS_LAP_TIME_BEST3]      = osdElementGpsLapTimeBest3,
 #endif // GPS_LAP_TIMER
+#ifdef USE_RACE_GATE_TIMER
+    [OSD_RACE_GATE_TIME_CURRENT] = osdElementRaceGateTimeCurrent,
+    [OSD_RACE_GATE_TIME_BEST]    = osdElementRaceGateTimeBest,
+    [OSD_RACE_GATE_TIME_LAST]    = osdElementRaceGateTimeLast,
+    [OSD_RACE_GATE_TOTAL_LAPS]   = osdElementRaceGateTimeTotalLaps,
+#endif // USE_RACE_GATE_TIMER
 #ifdef USE_PERSISTENT_STATS
     [OSD_TOTAL_FLIGHTS]           = osdElementTotalFlights,
 #endif
@@ -2073,6 +2120,13 @@ void osdAddActiveElements(void)
         osdAddActiveElement(OSD_GPS_LAP_TIME_BEST3);
     }
 #endif // GPS_LAP_TIMER
+
+#ifdef USE_RACE_GATE_TIMER
+    osdAddActiveElement(OSD_RACE_GATE_TIME_CURRENT);
+    osdAddActiveElement(OSD_RACE_GATE_TIME_BEST);
+    osdAddActiveElement(OSD_RACE_GATE_TIME_LAST);
+    osdAddActiveElement(OSD_RACE_GATE_TOTAL_LAPS);
+#endif
 
 #ifdef USE_PERSISTENT_STATS
     osdAddActiveElement(OSD_TOTAL_FLIGHTS);

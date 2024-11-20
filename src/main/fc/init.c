@@ -88,6 +88,7 @@
 #include "fc/board_info.h"
 #include "fc/dispatch.h"
 #include "fc/gps_lap_timer.h"
+#include "fc/raceGateTimer.h"
 #include "fc/init.h"
 #include "fc/rc_controls.h"
 #include "fc/runtime_config.h"
@@ -998,6 +999,10 @@ void init(void)
     // Attempt to enable DMA on all SPI busses
     spiInitBusDMA();
 #endif
+
+#ifdef USE_RACE_GATE_TIMER
+        initRaceGateTimer();
+#endif // USE_RACE_GATE_TIMER
 
     debugInit();
 

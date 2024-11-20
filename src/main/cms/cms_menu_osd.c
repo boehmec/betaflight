@@ -169,6 +169,12 @@ const OSD_Entry menuOsdActiveElemsEntries[] =
     {"LAP TIME PREVIOUS",  OME_VISIBLE | DYNAMIC, NULL, &osdConfig_item_pos[OSD_GPS_LAP_TIME_PREVIOUS]},
     {"LAP TIME BEST 3",    OME_VISIBLE | DYNAMIC, NULL, &osdConfig_item_pos[OSD_GPS_LAP_TIME_BEST3]},
 #endif // USE_GPS_LAP_TIMER
+#ifdef USE_RACE_GATE_TIMER
+    {"RACE TIME CURRENT",   OME_VISIBLE | DYNAMIC, NULL, &osdConfig_item_pos[OSD_RACE_GATE_TIME_CURRENT]},
+    {"RACE TIME BEST",  OME_VISIBLE | DYNAMIC, NULL, &osdConfig_item_pos[OSD_RACE_GATE_TIME_BEST]},
+    {"RACE TIME LAST",  OME_VISIBLE | DYNAMIC, NULL, &osdConfig_item_pos[OSD_RACE_GATE_TIME_LAST]},
+    {"RACE TIME TOTAL LAPS",    OME_VISIBLE | DYNAMIC, NULL, &osdConfig_item_pos[OSD_RACE_GATE_TOTAL_LAPS]},
+#endif // USE_RACE_GATE_TIMER
     {"PILOT NAME",         OME_VISIBLE | DYNAMIC, NULL, &osdConfig_item_pos[OSD_PILOT_NAME]},
     {"RC CHANNELS",        OME_VISIBLE | DYNAMIC, NULL, &osdConfig_item_pos[OSD_RC_CHANNELS]},
     {"CAMERA FRAME",       OME_VISIBLE | DYNAMIC, NULL, &osdConfig_item_pos[OSD_CAMERA_FRAME]},
