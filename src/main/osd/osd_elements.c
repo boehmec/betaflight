@@ -1240,8 +1240,8 @@ static void osdElementRaceGateTimeBest(osdElementParms_t *element)
 
 static void osdElementRaceGateTimeTotalLaps(osdElementParms_t *element)
 {
-
-    tfp_sprintf(element->buff, "%c%3u.%02u", SYM_TOTAL_DISTANCE, raceGateTimerData.totalLaps);
+    // tfp_sprintf(element->buff, "TOTAL LAPS");
+    tfp_sprintf(element->buff, "LAPS: %d",  raceGateTimerData.totalLaps);
 }
 
 #endif
@@ -2107,8 +2107,8 @@ void osdAddActiveElements(void)
 #endif // GPS_LAP_TIMER
 
 #ifdef USE_RACE_GATE_TIMER
-    osdAddActiveElement(OSD_RACE_GATE_TIME_CURRENT);
-    osdAddActiveElement(OSD_RACE_GATE_TIME_BEST);
+    // osdAddActiveElement(OSD_RACE_GATE_TIME_CURRENT);
+    // osdAddActiveElement(OSD_RACE_GATE_TIME_BEST);
     osdAddActiveElement(OSD_RACE_GATE_TOTAL_LAPS);
 #endif
 

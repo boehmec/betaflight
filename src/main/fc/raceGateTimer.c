@@ -4,7 +4,7 @@
 raceGateTimerData_t raceGateTimerData;
 
 void initRaceGateTimer(void) {
-    raceGateTimerData.totalLaps = 0;
+    raceGateTimerData.totalLaps = 12;
 }
 
 void onGatePassed(void) {
