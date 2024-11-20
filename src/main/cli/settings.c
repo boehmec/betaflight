@@ -51,6 +51,7 @@
 #include "fc/controlrate_profile.h"
 #include "fc/core.h"
 #include "fc/gps_lap_timer.h"
+#include "fc/raceGateTimer.h"
 #include "fc/parameter_names.h"
 #include "fc/rc.h"
 #include "fc/rc_adjustments.h"

@@ -456,7 +456,7 @@ void pgResetFn_osdElementConfig(osdElementConfig_t *osdElementConfig)
     osdElementConfig->item_pos[OSD_WARNINGS] = OSD_POS((midCol - 6), (midRow + 3)) | profileFlags;
 
     //ADD OUR RACE GATE TIMER FIXED POS
-    osdElementConfig->item_pos[OSD_RACE_GATE_TOTAL_LAPS] = OSD_POS((midCol - 1), (midRow + 1));
+    osdElementConfig->item_pos[OSD_RACE_GATE_TOTAL_LAPS] = OSD_POS((midCol - 1), (midRow + 1)) | OSD_PROFILE_1_FLAG;
 
     // Default to old fixed positions for these elements
     osdElementConfig->item_pos[OSD_CROSSHAIRS]         = OSD_POS((midCol - 2), (midRow - 1));
