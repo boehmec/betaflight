@@ -3,7 +3,7 @@
 
 raceGateTimerData_t raceGateTimerData;
 
-void init(void) {
+void initRaceGateTimer(void) {
     raceGateTimerData.totalLaps = 0;
 }
 

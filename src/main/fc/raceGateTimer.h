@@ -11,5 +11,5 @@ typedef struct raceGateTimerData_s {
 
 extern raceGateTimerData_t raceGateTimerData;
 
-void init(void);
+void initRaceGateTimer(void);
 void onGatePassed(void);
