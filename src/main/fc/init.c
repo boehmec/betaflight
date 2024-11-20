@@ -999,6 +999,10 @@ void init(void)
     spiInitBusDMA();
 #endif
 
+#ifdef USE_RACE_GATE_TIMER
+        raceGateTimerInit();
+#endif // USE_RACE_GATE_TIMER
+
     debugInit();
 
     unusedPinsInit();
