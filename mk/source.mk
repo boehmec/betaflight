@@ -89,7 +89,7 @@ COMMON_SRC = \
             flight/failsafe.c \
             flight/gps_rescue.c \
             fc/gps_lap_timer.c \
-            fc/race_gate_timer.c \
+            fc/raceGateTimer.c \
             flight/dyn_notch_filter.c \
             flight/imu.c \
             flight/mixer.c \
