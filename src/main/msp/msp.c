@@ -2180,13 +2180,6 @@ case MSP_NAME:
             break;
         }
         
-    case MSP_SET_RACE_GATE_TIME:
-        {
-            uint16_t lapTimeMillis = sbufReadU16(src);
-            onGatePassed(lapTimeMillis);
-            sbufWriteU8(dst, 8);
-            break;
-        }
 #endif
 
     default:
@@ -4072,6 +4065,15 @@ static mspResult_e mspProcessInCommand(mspDescriptor_t srcDesc, int16_t cmdMSP, 
         ledStripConfigMutable()->ledstrip_rainbow_delta = sbufReadU16(src);
         ledStripConfigMutable()->ledstrip_rainbow_freq = sbufReadU16(src);
         break;
+#endif
+
+#ifdef USE_RACE_GATE_TIMER
+    case MSP_SET_RACE_GATE_TIME:
+        {
+            uint16_t lapTimeMillis = sbufReadU16(src);
+            onGatePassed(lapTimeMillis);
+            break;
+        }
 #endif
 
 
