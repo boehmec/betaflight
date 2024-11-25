@@ -4057,18 +4057,19 @@ static mspResult_e mspProcessInCommand(mspDescriptor_t srcDesc, int16_t cmdMSP, 
 #endif
 
 
-#ifdef USE_RACE_GATET_IMER
+#ifdef USE_RACE_GATE_TIMER
     case MSP_RESET_RACE_GATE_TIMER: 
         {
             initRaceGateTimer();
+            break;
         }
-        break;
+        
     case MSP_SET_RACE_GATE_TIME:
         {
             uint16_t lapTimeMillis = sbufReadU16(src);
             onGatePassed(lapTimeMillis);
+            break;
         }
-        break;
 #endif
 
 
