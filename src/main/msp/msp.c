@@ -2172,17 +2172,15 @@ case MSP_NAME:
         break;
 #endif
 
-// #ifdef USE_RACE_GATE_TIMER
+#ifdef USE_RACE_GATE_TIMER
     case MSP_RESET_RACE_GATE_TIMER: 
         {
-            // initRaceGateTimer();
-            onGatePassed(1234);
+            initRaceGateTimer();
             sbufWriteU8(dst, raceGateTimerData.totalLaps);
-            
         }
     break;
         
-// #endif
+#endif
 
     default:
         unsupportedCommand = true;
@@ -4074,8 +4072,8 @@ static mspResult_e mspProcessInCommand(mspDescriptor_t srcDesc, int16_t cmdMSP, 
         {
             uint16_t lapTimeMillis = sbufReadU16(src);
             onGatePassed(lapTimeMillis);
-            break;
         }
+    break;
 #endif
 
 
