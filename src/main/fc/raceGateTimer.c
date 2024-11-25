@@ -5,8 +5,7 @@ raceGateTimerData_t raceGateTimerData;
 
 void initRaceGateTimer(void) {
     raceGateTimerData.totalLaps = 0;
-    raceGateTimerData.currentLapTime = millis();
-    raceGateTimerData.timerRunning = true; //todo remove
+    raceGateTimerData.timerRunning = false;
 }
 
 void onGatePassed(uint32_t lapTime) {

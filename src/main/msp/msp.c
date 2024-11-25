@@ -81,6 +81,7 @@
 #include "fc/rc_controls.h"
 #include "fc/rc_modes.h"
 #include "fc/runtime_config.h"
+#include "fc/raceGateTimer.h"
 
 #include "flight/failsafe.h"
 #include "flight/gps_rescue.h"
@@ -4054,6 +4055,22 @@ static mspResult_e mspProcessInCommand(mspDescriptor_t srcDesc, int16_t cmdMSP, 
         ledStripConfigMutable()->ledstrip_rainbow_freq = sbufReadU16(src);
         break;
 #endif
+
+
+#ifdef USE_RACE_GATET_IMER
+    case MSP_RESET_RACE_GATE_TIMER: 
+        {
+            initRaceGateTimer();
+        }
+        break;
+    case MSP_SET_RACE_GATE_TIME:
+        {
+            uint16_t lapTimeMillis = sbufReadU16(src);
+            onGatePassed(lapTimeMillis);
+        }
+        break;
+#endif
+
 
     default:
         // we do not know how to handle the (valid) message, indicate error MSP $M!
