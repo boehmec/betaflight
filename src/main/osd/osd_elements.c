@@ -1242,7 +1242,14 @@ static void osdElementRaceGateTimeCurrent(osdElementParms_t *element)
 
 static void osdElementRaceGateTimeBest(osdElementParms_t *element)
 {
-    osdFormatRaceGateTime(element, raceGateTimerData.bestLapTime, SYM_CHECKERED_FLAG);
+    if (raceGateTimerData.timerRunning) {
+        if(raceGateTimerData.bestLapTime != INT32_MAX){
+            osdFormatRaceGateTime(element, raceGateTimerData.bestLapTime, SYM_CHECKERED_FLAG);
+        }
+    } else {
+        osdFormatRaceGateTime(element, 0, SYM_CHECKERED_FLAG);
+    }
+    
 }
 
 static void osdElementRaceGateTimeLast(osdElementParms_t *element)
@@ -1255,8 +1262,6 @@ static void osdElementRaceGateTimeTotalLaps(osdElementParms_t *element)
 {
     tfp_sprintf(element->buff, "LAPS: %d",  raceGateTimerData.totalLaps);
 }
-
-
 
 #endif
 

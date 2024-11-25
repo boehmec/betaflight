@@ -6,11 +6,13 @@ raceGateTimerData_t raceGateTimerData;
 void initRaceGateTimer(void) {
     raceGateTimerData.totalLaps = 0;
     raceGateTimerData.timerRunning = false;
+    raceGateTimerData.bestLapTime = INT32_MAX;
 }
 
 void onGatePassed(uint32_t lapTime) {
     raceGateTimerData.totalLaps++;
-    if(raceGateTimerData.bestLapTime > lapTime){
+    //update best lap - might not be accurate for whole session
+    if(lapTime < raceGateTimerData.bestLapTime){
         raceGateTimerData.bestLapTime = lapTime;
     }
     raceGateTimerData.lastLapTime = lapTime;
