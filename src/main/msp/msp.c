@@ -2171,6 +2171,24 @@ case MSP_NAME:
 
         break;
 #endif
+
+#ifdef USE_RACE_GATE_TIMER
+    case MSP_RESET_RACE_GATE_TIMER: 
+        {
+            initRaceGateTimer();
+            sbufWriteU8(dst, 7);
+            break;
+        }
+        
+    case MSP_SET_RACE_GATE_TIME:
+        {
+            uint16_t lapTimeMillis = sbufReadU16(src);
+            onGatePassed(lapTimeMillis);
+            sbufWriteU8(dst, 8);
+            break;
+        }
+#endif
+
     default:
         unsupportedCommand = true;
     }
@@ -4054,22 +4072,6 @@ static mspResult_e mspProcessInCommand(mspDescriptor_t srcDesc, int16_t cmdMSP, 
         ledStripConfigMutable()->ledstrip_rainbow_delta = sbufReadU16(src);
         ledStripConfigMutable()->ledstrip_rainbow_freq = sbufReadU16(src);
         break;
-#endif
-
-
-#ifdef USE_RACE_GATE_TIMER
-    case MSP_RESET_RACE_GATE_TIMER: 
-        {
-            initRaceGateTimer();
-            break;
-        }
-        
-    case MSP_SET_RACE_GATE_TIME:
-        {
-            uint16_t lapTimeMillis = sbufReadU16(src);
-            onGatePassed(lapTimeMillis);
-            break;
-        }
 #endif
 
 
