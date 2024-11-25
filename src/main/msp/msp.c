@@ -2172,15 +2172,17 @@ case MSP_NAME:
         break;
 #endif
 
-#ifdef USE_RACE_GATE_TIMER
+// #ifdef USE_RACE_GATE_TIMER
     case MSP_RESET_RACE_GATE_TIMER: 
         {
-            initRaceGateTimer();
-            sbufWriteU8(dst, 7);
-            break;
+            // initRaceGateTimer();
+            onGatePassed(1234);
+            sbufWriteU8(dst, raceGateTimerData.totalLaps);
+            
         }
+    break;
         
-#endif
+// #endif
 
     default:
         unsupportedCommand = true;
