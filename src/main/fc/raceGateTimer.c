@@ -6,7 +6,8 @@ raceGateTimerData_t raceGateTimerData;
 void initRaceGateTimer(void) {
     raceGateTimerData.totalLaps = 0;
     raceGateTimerData.timerRunning = false;
-    raceGateTimerData.bestLapTime = INT32_MAX;
+    raceGateTimerData.bestLapTime = INT16_MAX;
+    raceGateTimerData.currentLapTime = 0;
 }
 
 void onGatePassed(uint32_t lapTime) {

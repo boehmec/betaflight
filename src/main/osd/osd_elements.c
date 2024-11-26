@@ -1243,7 +1243,7 @@ static void osdElementRaceGateTimeCurrent(osdElementParms_t *element)
 static void osdElementRaceGateTimeBest(osdElementParms_t *element)
 {
     if (raceGateTimerData.timerRunning) {
-        if(raceGateTimerData.bestLapTime != INT32_MAX){
+        if(raceGateTimerData.bestLapTime != INT16_MAX){
             osdFormatRaceGateTime(element, raceGateTimerData.bestLapTime, SYM_CHECKERED_FLAG);
         }
     } else {
